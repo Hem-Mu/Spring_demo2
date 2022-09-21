@@ -1,6 +1,8 @@
 package hello.core;
 
+import hello.core.discount.DiscountPolicy;
 import hello.core.discount.FixDiscountPolicy;
+import hello.core.member.MemberRepository;
 import hello.core.member.MemberServerImpl;
 import hello.core.member.MemberService;
 import hello.core.member.MemoryMemberRepository;
@@ -9,10 +11,17 @@ import hello.core.order.OrderServiceImpl;
 
 public class AppConfig {
     public MemberService memberService(){
-        return new MemberServerImpl(new MemoryMemberRepository());
+        return new MemberServerImpl(memberRepository());
     }
 
+    private static MemberRepository memberRepository() {
+        return new MemoryMemberRepository();
+    } //ctrl+alt+m 구체화
+
     public OrderService orderService(){
-        return new OrderServiceImpl(new MemoryMemberRepository(), new FixDiscountPolicy());
+        return new OrderServiceImpl(memberRepository(), discountPolicy());
+    }
+    public DiscountPolicy discountPolicy(){
+        return new FixDiscountPolicy();
     }
 }//클래스를 인자로 넣어주자
