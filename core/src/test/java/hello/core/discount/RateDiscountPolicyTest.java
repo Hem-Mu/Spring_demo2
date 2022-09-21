@@ -20,7 +20,7 @@ class RateDiscountPolicyTest {
         //when
         int discount = discountPolicy.discount((member), 10000);
         //then
-        assertThat(discount).isEqualTo(1100); //alt+enter 로 static import
+        assertThat(discount).isEqualTo(1000); //alt+enter 로 static import
     }
     @Test
     @DisplayName("VIP 아니면 할인 미적용")
