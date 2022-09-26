@@ -2,6 +2,7 @@ package hello.core;
 
 import hello.core.discount.DiscountPolicy;
 import hello.core.discount.FixDiscountPolicy;
+import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemberServerImpl;
 import hello.core.member.MemberService;
@@ -22,6 +23,7 @@ public class AppConfig {
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
     public DiscountPolicy discountPolicy(){
-        return new FixDiscountPolicy();
+        //return new FixDiscountPolicy();
+        return new RateDiscountPolicy();
     }
 }//클래스를 인자로 넣어주자
