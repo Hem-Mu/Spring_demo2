@@ -27,8 +27,8 @@ public class ApplicationContextInfoTest {
         for (String beanDefinitionName : beanDefinitionNames) {
             BeanDefinition beanDefinition = applicationContextInfoTest.getBeanDefinition(beanDefinitionName);
 
-            // ROLE_APPLICATION : 직접 등록한 애플리케이션 빈
-            // ROLE_INFRASTRUCTURE : 스프링 내부에서 사용하는 빈
+            // ROLE_APPLICATION : 직접 등록한 애플리케이션 빈.
+            // ROLE_INFRASTRUCTURE : 스프링 내부에서 사용하는 빈.
             if(beanDefinition.getRole()==BeanDefinition.ROLE_APPLICATION) {
                 Object bean = applicationContextInfoTest.getBean(beanDefinitionName);
                 System.out.println("AppName = " + beanDefinitionName+"object = "+bean);
