@@ -12,27 +12,30 @@ import hello.core.order.OrderServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration //설정정보를 -> @Bean
+@Configuration
 public class AppConfig {
-    @Bean //스프링컨테이너에 등록
-        // 빈 이름은 항상 다르게 지정
-    public MemberService memberService(){
+    @Bean
+    public MemberService memberService() {
+        //1번
+        System.out.println("call AppConfig.memberService");
         return new MemberServerImpl(memberRepository());
     }
-
     @Bean
-    public static MemberRepository memberRepository() {
-        return new MemoryMemberRepository();
-    } //ctrl+alt+m 구체화
-
-    @Bean
-    public OrderService orderService(){
+    public OrderService orderService() {
+        //1번
+        System.out.println("call AppConfig.orderService");
         return new OrderServiceImpl(
                 memberRepository(),
                 discountPolicy());
     }
     @Bean
-    public DiscountPolicy discountPolicy(){
+    public MemberRepository memberRepository() {
+        //2번? 3번?
+        System.out.println("call AppConfig.memberRepository");
+        return new MemoryMemberRepository();
+    }
+    @Bean
+    public DiscountPolicy discountPolicy() {
         //return new FixDiscountPolicy();
         return new RateDiscountPolicy();
     }
